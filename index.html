@@ -2,10 +2,86 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Covid19 Tracker</title>
+    <title>AWESOME PRIZE WINNING PROJECT! 😄</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/443d6ce95e.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="map-style.js"></script>
+    <script src="script.js"></script>
   </head>
   <body>
-    <h1>Hello</h1>
+    <div class="container-fluid main">
+      <div class="row">
+        <div class="col-8">
+          <div class="row header-container">
+            <div class="col title-container">
+              <h2>AWESOME PRIZE WINNING PROJECT! 😄</h2>
+            </div>
+            <div class="col search-container">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"
+                    ><i class="fas fa-search"></i
+                  ></span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search Country"
+                  aria-label="Search Country"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row stats-container"></div>
+          <div class="row map-container mt-3">
+            <div id="style-selector-control" class="map-control">
+              <select id="style-selector" class="selector-control">
+                <option value="default">Default</option>
+                <option value="silver" selected="selected">Silver</option>
+                <option value="night">Night mode</option>
+                <option value="retro">Retro</option>
+                <option value="hiding">Hide features</option>
+              </select>
+            </div>
+            <div id="map"></div>
+          </div>
+        </div>
+        <div class="col-4"></div>
+      </div>
+    </div>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=<YOUR-API-KEY>&callback=initMap"
+      async
+      defer
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
