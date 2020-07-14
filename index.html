@@ -14,6 +14,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
     <script
       src="https://kit.fontawesome.com/443d6ce95e.js"
       crossorigin="anonymous"
@@ -60,11 +62,21 @@
             <div id="map"></div>
           </div>
         </div>
-        <div class="col-4"></div>
+        <div class="col-4 side-panel-container my-3">
+          <div class="cases-table-container">
+            <h4>Live Cases by Country</h4>
+            <div class="country-data">
+              <table class="table">
+                <tbody id="table-data"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="chart-container mt-3"></div>
+        </div>
       </div>
     </div>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=<YOUR-API-KEY>&callback=initMap"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJ7VvobsIYLr3Pe6cTNUnIUvzgpV2Na-o&callback=initMap"
       async
       defer
     ></script>
