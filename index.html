@@ -48,7 +48,46 @@
               </div>
             </div>
           </div>
-          <div class="row stats-container"></div>
+          <div class="row stats-container">
+            <div class="col">
+              <div class="card cases">
+                <div class="tab-selection"></div>
+                <div class="card-body">
+                  <h6 class="card-title">Coronavirus Cases</h6>
+                  <h3 class="card-subtitle mb-2 total-number">1,436,886</h3>
+                  <div class="text-muted font-weight-bold total cases-total">
+                    1.69M Total
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card recovered">
+                <div class="tab-selection"></div>
+                <div class="card-body">
+                  <h6 class="card-title">Recovered</h6>
+                  <h3 class="card-subtitle mb-2 recovered-number">302,964</h3>
+                  <div
+                    class="text-muted font-weight-bold total recovered-total"
+                  >
+                    1.69M Total
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card deaths">
+                <div class="tab-selection"></div>
+                <div class="card-body">
+                  <h6 class="card-title">Deaths</h6>
+                  <h3 class="card-subtitle mb-2 deaths-number">82,191</h3>
+                  <div class="text-muted font-weight-bold total deaths-total">
+                    1.69M Total
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row map-container mt-3">
             <div id="style-selector-control" class="map-control">
               <select id="style-selector" class="selector-control">
@@ -76,7 +115,7 @@
       </div>
     </div>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJ7VvobsIYLr3Pe6cTNUnIUvzgpV2Na-o&callback=initMap"
+      src="https://maps.googleapis.com/maps/api/js?key=<YOUR_API_KEY&callback=initMap"
       async
       defer
     ></script>

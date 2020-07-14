@@ -41,6 +41,7 @@ body {
   background-color: white;
   box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
   padding-top: 15px;
+  height: 700px;
 }
 .cases-table-container h4,
 .chart-container h4 {
@@ -51,4 +52,8 @@ body {
 .country-data .table td {
   padding: 0.5rem;
   border: none;
+}
+.cases-table-container {
+  height: 50%;
+  overflow: scroll;
 }
