@@ -1,5 +1,7 @@
+let chartData = [];
+let chartRecoveredData = [];
+let chartDeathData = [];
 const buildChartData = (data) => {
-  let chartData = [];
   for (let date in data.cases) {
     let newDataPoint = {
       x: date,
@@ -7,10 +9,25 @@ const buildChartData = (data) => {
     };
     chartData.push(newDataPoint);
   }
-  return chartData;
+
+  for (let date in data.deaths) {
+    let newDataPoint = {
+      x: date,
+      y: data.deaths[date],
+    };
+    chartDeathData.push(newDataPoint);
+  }
+  for (let date in data.recovered) {
+    let newDataPoint = {
+      x: date,
+      y: data.recovered[date],
+    };
+    chartRecoveredData.push(newDataPoint);
+  }
+  console.log(data);
 };
 
-const buildChart = (chartData) => {
+const buildChart = () => {
   var timeFormat = "MM/DD/YY";
   var ctx = document.getElementById("myChart").getContext("2d");
   var chart = new Chart(ctx, {
@@ -22,9 +39,21 @@ const buildChart = (chartData) => {
       datasets: [
         {
           label: "Total Cases",
-          backgroundColor: "rgba(204, 16, 52, 0.5)",
+          backgroundColor: "#CC103477",
           borderColor: "#CC1034",
           data: chartData,
+        },
+        {
+          label: "Recovered",
+          backgroundColor: "#7fd92277",
+          borderColor: "#7fd922",
+          data: chartRecoveredData,
+        },
+        {
+          label: "Deaths",
+          backgroundColor: "#fa557577",
+          borderColor: "#fa5575",
+          data: chartDeathData,
         },
       ],
     },
@@ -54,7 +83,7 @@ const buildChart = (chartData) => {
             ticks: {
               // Include a dollar sign in the ticks
               callback: function (value, index, values) {
-                return numeral(value).format("0a");
+                return numeral(value).format("0a").toUpperCase();
               },
             },
           },
