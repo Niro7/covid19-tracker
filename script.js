@@ -27,16 +27,23 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: mapCenter,
     zoom: 3,
-    mapTypeControl: false,
+    styles: mapStyle,
   });
-
-  styleSelectorControls();
   infoWindow = new google.maps.InfoWindow();
 }
 
 const changeDataSelection = (casesType) => {
   clearTheMap();
   showDataOnMap(coronaGlobalData, casesType);
+
+  var cards = document.getElementsByClassName("card");
+  for (var card = 0; card < cards.length; card++) {
+    cards[card].addEventListener("click", function () {
+      var current = document.getElementsByClassName("active");
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";
+    });
+  }
 };
 
 const clearTheMap = () => {
@@ -117,9 +124,9 @@ const setStatsData = (data) => {
   let addedCases = numeral(data.todayCases).format("+0,0");
   let addedRecovered = numeral(data.todayRecovered).format("+0,0");
   let addedDeaths = numeral(data.todayDeaths).format("+0,0");
-  let totalCases = numeral(data.cases).format("0.0a");
-  let totalRecovered = numeral(data.recovered).format("0.0a");
-  let totalDeaths = numeral(data.deaths).format("0.0a");
+  let totalCases = numeral(data.cases).format("0.0a").toUpperCase();
+  let totalRecovered = numeral(data.recovered).format("0.0a").toUpperCase();
+  let totalDeaths = numeral(data.deaths).format("0.0a").toUpperCase();
   document.querySelector(".total-number").innerHTML = addedCases;
   document.querySelector(".recovered-number").innerHTML = addedRecovered;
   document.querySelector(".deaths-number").innerHTML = addedDeaths;

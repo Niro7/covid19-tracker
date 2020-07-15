@@ -123,3 +123,8 @@ body {
 .deaths .tab-selection {
   background-color: #fa5575;
 }
+.stats-container .active,
+.stats-container .card:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
