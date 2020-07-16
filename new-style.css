@@ -3,7 +3,8 @@ body {
 }
 
 .main {
-  height: 100vh;
+  min-height: 900px;
+  max-width: 1280px;
 }
 
 .search-container {
@@ -54,6 +55,7 @@ body {
   border-radius: 12px;
   box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+  cursor: pointer;
 }
 
 .stats-container .card-body {
@@ -104,12 +106,22 @@ body {
   border: none;
 }
 
+.card.active > .tab-selection {
+  opacity: 1;
+}
+
 .tab-selection {
   height: 10px;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.card:hover > .tab-selection {
+  opacity: 1;
 }
 
 .cases .tab-selection {
@@ -122,9 +134,4 @@ body {
 
 .deaths .tab-selection {
   background-color: #fa5575;
-}
-.stats-container .active,
-.stats-container .card:hover {
-  background-color: #f1f1f1;
-  cursor: pointer;
 }

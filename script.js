@@ -14,7 +14,7 @@ const wordwideSelection = {
   selected: true,
 };
 var casesTypeColors = {
-  cases: "#1d2c4d",
+  cases: "#cc1034",
   active: "#9d80fe",
   recovered: "#7dd71d",
   deaths: "#fb4443",
@@ -32,18 +32,16 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow();
 }
 
-const changeDataSelection = (casesType) => {
+const changeDataSelection = (elem, casesType) => {
   clearTheMap();
   showDataOnMap(coronaGlobalData, casesType);
+  setActiveTab(elem);
+};
 
-  var cards = document.getElementsByClassName("card");
-  for (var card = 0; card < cards.length; card++) {
-    cards[card].addEventListener("click", function () {
-      var current = document.getElementsByClassName("active");
-      current[0].className = current[0].className.replace(" active", "");
-      this.className += " active";
-    });
-  }
+const setActiveTab = (elem) => {
+  const activeEl = document.querySelector(".card.active");
+  activeEl.classList.remove("active");
+  elem.classList.add("active");
 };
 
 const clearTheMap = () => {
@@ -124,9 +122,9 @@ const setStatsData = (data) => {
   let addedCases = numeral(data.todayCases).format("+0,0");
   let addedRecovered = numeral(data.todayRecovered).format("+0,0");
   let addedDeaths = numeral(data.todayDeaths).format("+0,0");
-  let totalCases = numeral(data.cases).format("0.0a").toUpperCase();
-  let totalRecovered = numeral(data.recovered).format("0.0a").toUpperCase();
-  let totalDeaths = numeral(data.deaths).format("0.0a").toUpperCase();
+  let totalCases = numeral(data.cases).format("0.0a");
+  let totalRecovered = numeral(data.recovered).format("0.0a");
+  let totalDeaths = numeral(data.deaths).format("0.0a");
   document.querySelector(".total-number").innerHTML = addedCases;
   document.querySelector(".recovered-number").innerHTML = addedRecovered;
   document.querySelector(".deaths-number").innerHTML = addedDeaths;
@@ -173,23 +171,23 @@ const showDataOnMap = (data, casesType = "cases") => {
     mapCircles.push(countryCircle);
 
     var html = `
-            <div class="info-container">
-                <div class="info-flag" style="background-image: url(${country.countryInfo.flag});">
-                </div>
-                <div class="info-name">
-                    ${country.country}
-                </div>
-                <div class="info-confirmed">
-                    Total: ${country.cases}
-                </div>
-                <div class="info-recovered">
-                    Recovered: ${country.recovered}
-                </div>
-                <div class="info-deaths">   
-                    Deaths: ${country.deaths}
-                </div>
-            </div>
-        `;
+          <div class="info-container">
+              <div class="info-flag" style="background-image: url(${country.countryInfo.flag});">
+              </div>
+              <div class="info-name">
+                  ${country.country}
+              </div>
+              <div class="info-confirmed">
+                  Total: ${country.cases}
+              </div>
+              <div class="info-recovered">
+                  Recovered: ${country.recovered}
+              </div>
+              <div class="info-deaths">   
+                  Deaths: ${country.deaths}
+              </div>
+          </div>
+      `;
 
     var infoWindow = new google.maps.InfoWindow({
       content: html,
@@ -209,11 +207,11 @@ const showDataInTable = (data) => {
   var html = "";
   data.forEach((country) => {
     html += `
-        <tr>
-            <td>${country.country}</td>
-            <td>${numeral(country.cases).format("0,0")}</td>
-        </tr>
-        `;
+      <tr>
+          <td>${country.country}</td>
+          <td>${numeral(country.cases).format("0,0")}</td>
+      </tr>
+      `;
   });
   document.getElementById("table-data").innerHTML = html;
 };
