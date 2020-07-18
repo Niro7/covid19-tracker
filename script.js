@@ -7,8 +7,10 @@ window.onload = () => {
 var map;
 var infoWindow;
 let coronaGlobalData;
+let chartData;
+let caseType;
 let mapCircles = [];
-const wordwideSelection = {
+const worldwideSelection = {
   name: "Worldwide",
   value: "www",
   selected: true,
@@ -35,6 +37,7 @@ function initMap() {
 const changeDataSelection = (elem, casesType) => {
   clearTheMap();
   showDataOnMap(coronaGlobalData, casesType);
+  buildChartData(chartData, casesType);
   setActiveTab(elem);
 };
 
@@ -62,7 +65,7 @@ const initDropdown = (searchList) => {
   $(".ui.dropdown").dropdown({
     values: searchList,
     onChange: function (value, text) {
-      if (value !== wordwideSelection.value) {
+      if (value !== worldwideSelection.value) {
         getCountryData(value);
       } else {
         getWorldCoronaData();
@@ -73,7 +76,7 @@ const initDropdown = (searchList) => {
 
 const setSearchList = (data) => {
   let searchList = [];
-  searchList.push(wordwideSelection);
+  searchList.push(worldwideSelection);
   data.forEach((countryData) => {
     searchList.push({
       name: countryData.country,
@@ -122,9 +125,9 @@ const setStatsData = (data) => {
   let addedCases = numeral(data.todayCases).format("+0,0");
   let addedRecovered = numeral(data.todayRecovered).format("+0,0");
   let addedDeaths = numeral(data.todayDeaths).format("+0,0");
-  let totalCases = numeral(data.cases).format("0.0a");
-  let totalRecovered = numeral(data.recovered).format("0.0a");
-  let totalDeaths = numeral(data.deaths).format("0.0a");
+  let totalCases = numeral(data.cases).format("0.0a").toUpperCase();
+  let totalRecovered = numeral(data.recovered).format("0.0a").toUpperCase();
+  let totalDeaths = numeral(data.deaths).format("0.0a").toUpperCase();
   document.querySelector(".total-number").innerHTML = addedCases;
   document.querySelector(".recovered-number").innerHTML = addedRecovered;
   document.querySelector(".deaths-number").innerHTML = addedDeaths;
@@ -141,7 +144,7 @@ const getHistoricalData = () => {
       return response.json();
     })
     .then((data) => {
-      let chartData = buildChartData(data);
+      chartData = buildChartData(data);
       buildChart(chartData);
     });
 };
@@ -151,12 +154,14 @@ const openInfoWindow = () => {
 };
 
 const showDataOnMap = (data, casesType = "cases") => {
+  caseType = casesType;
+
   data.map((country) => {
     let countryCenter = {
       lat: country.countryInfo.lat,
       lng: country.countryInfo.long,
     };
-
+    // console.log(casesType);
     var countryCircle = new google.maps.Circle({
       strokeColor: casesTypeColors[casesType],
       strokeOpacity: 0.8,
@@ -208,7 +213,11 @@ const showDataInTable = (data) => {
   data.forEach((country) => {
     html += `
       <tr>
-          <td>${country.country}</td>
+          <td  ><img src="${
+            country.countryInfo.flag
+          }" alt="Flag" style="height:1.5rem; width:1.5rem; border-radius:50%; margin-right: 5px;" > ${
+      country.country
+    }</td>
           <td>${numeral(country.cases).format("0,0")}</td>
       </tr>
       `;

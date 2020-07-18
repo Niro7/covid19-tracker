@@ -1,59 +1,78 @@
-let chartData = [];
-let chartRecoveredData = [];
-let chartDeathData = [];
-const buildChartData = (data) => {
+const buildChartData = (data, casesType) => {
+  let chartData = [];
+  let lastDataPoint;
+  // console.log(data);
+  // for (const caseType in data) {
+  //   console.log(`${caseType}`);
+  // }
+  // console.log(data.cases);
   for (let date in data.cases) {
-    let newDataPoint = {
-      x: date,
-      y: data.cases[date],
-    };
-    chartData.push(newDataPoint);
-  }
+    if (lastDataPoint) {
+      let newDataPoint = {
+        x: date,
+        y: data.cases[date] - lastDataPoint,
+      };
+      // console.log(data[casesType]);
 
-  for (let date in data.deaths) {
-    let newDataPoint = {
-      x: date,
-      y: data.deaths[date],
-    };
-    chartDeathData.push(newDataPoint);
+      chartData.push(newDataPoint);
+    }
+    lastDataPoint = data.cases[date];
   }
-  for (let date in data.recovered) {
-    let newDataPoint = {
-      x: date,
-      y: data.recovered[date],
-    };
-    chartRecoveredData.push(newDataPoint);
-  }
-  console.log(data);
+  // if ((caseType = "cases")) {
+  //   for (let date in data.cases) {
+  //     if (lastDataPoint) {
+  //       let newDataPoint = {
+  //         x: date,
+  //         y: data[caseType][date] - lastDataPoint,
+  //       };
+  //       console.log(data[caseType][date]);
+
+  //       chartData.push(newDataPoint);
+  //     }
+  //     lastDataPoint = data.cases[date];
+  //   }
+  // } else if ((caseType = "recovered")) {
+  //   for (let date in data.recovered) {
+  //     if (lastDataPoint) {
+  //       let newDataPoint = {
+  //         x: date,
+  //         y: data.recovered[date] - lastDataPoint,
+  //       };
+  //       chartData.push(newDataPoint);
+  //     }
+  //     lastDataPoint = data.recovered[date];
+  //   }
+  // } else if ((caseType = "deaths")) {
+  //   for (let date in data.deaths) {
+  //     if (lastDataPoint) {
+  //       let newDataPoint = {
+  //         x: date,
+  //         y: data.deaths[date] - lastDataPoint,
+  //       };
+  //       chartData.push(newDataPoint);
+  //     }
+  //     lastDataPoint = data.deaths[date];
+  //   }
+  // }
+
+  // console.log(recoveredType);
+  return chartData;
 };
-
-const buildChart = () => {
+const buildChart = (chartData) => {
   var timeFormat = "MM/DD/YY";
   var ctx = document.getElementById("myChart").getContext("2d");
   var chart = new Chart(ctx, {
-    // The type of chart we want to create
+    // The type of chart
     type: "line",
 
-    // The data for our dataset
+    // The data for dataset
     data: {
       datasets: [
         {
           label: "Total Cases",
-          backgroundColor: "#CC103477",
+          backgroundColor: "rgba(204, 16, 52, 0.5)",
           borderColor: "#CC1034",
           data: chartData,
-        },
-        {
-          label: "Recovered",
-          backgroundColor: "#7fd92277",
-          borderColor: "#7fd922",
-          data: chartRecoveredData,
-        },
-        {
-          label: "Deaths",
-          backgroundColor: "#fa557577",
-          borderColor: "#fa5575",
-          data: chartDeathData,
         },
       ],
     },
@@ -64,6 +83,11 @@ const buildChart = () => {
       tooltips: {
         mode: "index",
         intersect: false,
+      },
+      elements: {
+        point: {
+          radius: 0,
+        },
       },
       scales: {
         xAxes: [

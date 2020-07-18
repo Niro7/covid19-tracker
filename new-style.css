@@ -4,7 +4,7 @@ body {
 
 .main {
   min-height: 900px;
-  max-width: 1280px;
+  /* max-width: 1280px; */
 }
 
 .search-container {
@@ -25,7 +25,9 @@ body {
   border-radius: 12px;
   overflow: hidden;
 }
-
+#myChart {
+  max-height: 300px;
+}
 .chart-container {
   margin-left: 0;
   margin-right: 0;
@@ -83,15 +85,18 @@ body {
   padding-top: 15px;
 }
 
-.total-number {
+.total-number,
+.cases i {
   color: #cc1034;
 }
 
-.recovered-number {
+.recovered-number,
+.recovered i {
   color: #7fd922;
 }
 
-.deaths-number {
+.deaths-number,
+.deaths i {
   color: #fa5575;
 }
 
@@ -134,4 +139,7 @@ body {
 
 .deaths .tab-selection {
   background-color: #fa5575;
+}
+.main-info {
+  height: 500px;
 }
