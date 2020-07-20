@@ -26,7 +26,6 @@
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"
     ></script> -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
@@ -36,7 +35,8 @@
     <script src="map-style.js"></script>
     <script src="script.js"></script>
     <script src="chart.js"></script>
-    <script type="text/javascript">
+    <script src="newsfeed.js"></script>
+    <!-- <script type="text/javascript">
       $(document).ready(function () {
         var xml = $.ajax({
           type: "GET",
@@ -57,7 +57,8 @@
             });
         }
       });
-    </script>
+    </script> -->
+
   </head>
   <body>
     <div class="container-fluid">
@@ -160,22 +161,15 @@
           </div>
         </div>
       </div>
-      <div id="container" class="row main-info">
-        <!-- <div class="col newsfeed-container">
-          <div class="row newsfeed-title"><h1>News Updates</h1></div>
-          <div class="row newsfeed-body">News dsfjosdfijwefcsvoj</div>
-        </div>
-        <div class="col health">
-          <div class="row health-title">
-            <h1>Coronavirus Info:</h1>
-            <h2>Health & Safety</h2>
+      <div class="row main-info">
+        <div class="col-12 col-lg-8 news-container">
+          <h4>News Updates</h4>
+          <div id="news-container" class="row card-group mt-2 mb-2 newsfeed-container">
+
           </div>
-          <div class="row health-body">Health and safety dsofjspdfj</div>
-        </div> -->
-      </div>
     </div>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJ7VvobsIYLr3Pe6cTNUnIUvzgpV2Na-o&callback=initMap"
+      src="https://maps.googleapis.com/maps/api/js?key=<YOUR-API-KEY>&callback=initMap"
       async
       defer
     ></script>

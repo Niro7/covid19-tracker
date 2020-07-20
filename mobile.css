@@ -1,6 +1,28 @@
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
   .side-panel-container {
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
   }
 }
+@media (max-width: 768px) {
+  .side-panel-container {
+    border-radius: 30px;
+  }
+}
+/* @media (max-width: 425px) {
+  .newsfeed-container {
+    flex-direction: column;
+  }
+  .newsfeed-container img {
+    width: 100%;
+    height: auto;
+  }
+}
+@media (min-width: 426px) {
+  .news-items-conatiner {
+    display: flex;
+  }
+  .newsfeed-container {
+    flex-direction: column;
+  }
+} */

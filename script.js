@@ -2,12 +2,12 @@ window.onload = () => {
   getCountriesData();
   getHistoricalData();
   getWorldCoronaData();
+  getCoronaNews();
 };
 
 var map;
 var infoWindow;
 let coronaGlobalData;
-let chartData;
 let caseType;
 let mapCircles = [];
 const worldwideSelection = {
@@ -37,7 +37,6 @@ function initMap() {
 const changeDataSelection = (elem, casesType) => {
   clearTheMap();
   showDataOnMap(coronaGlobalData, casesType);
-  buildChartData(chartData, casesType);
   setActiveTab(elem);
 };
 
@@ -85,7 +84,16 @@ const setSearchList = (data) => {
   });
   initDropdown(searchList);
 };
-
+const getCoronaNews = () => {
+  fetch(
+    "https://content.guardianapis.com/search?show-elements=image&show-fields=thumbnail%2CtrailText%2Cheadline&page=1&page-size=10&q=coronavirus%2Ccovid-19&api-key=<api-key>"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      let news = data.response.results;
+      showNewsFeed(news);
+    });
+};
 const getCountriesData = () => {
   fetch("https://corona.lmao.ninja/v2/countries")
     .then((response) => {
@@ -144,7 +152,7 @@ const getHistoricalData = () => {
       return response.json();
     })
     .then((data) => {
-      chartData = buildChartData(data);
+      let chartData = buildChartData(data);
       buildChart(chartData);
     });
 };
@@ -154,8 +162,6 @@ const openInfoWindow = () => {
 };
 
 const showDataOnMap = (data, casesType = "cases") => {
-  caseType = casesType;
-
   data.map((country) => {
     let countryCenter = {
       lat: country.countryInfo.lat,

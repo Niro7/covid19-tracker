@@ -30,7 +30,7 @@ body {
 
 .country-data {
   margin-top: 20px;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 400px;
 }
 
