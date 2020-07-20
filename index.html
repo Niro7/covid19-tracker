@@ -88,7 +88,7 @@
                   <h6 class="card-title">
                     <i class="fas fa-hospital-user"></i> Coronavirus Cases
                   </h6>
-                  <h3 class="card-subtitle mb-2 total-number"></h3>
+                  <h3 class="card-subtitle count mb-2 total-number"></h3>
                   <div
                     class="text-muted font-weight-bold total cases-total"
                   ></div>
@@ -105,7 +105,7 @@
                   <h6 class="card-title">
                     <i class="fas fa-running"></i> Recovered
                   </h6>
-                  <h3 class="card-subtitle mb-2 recovered-number"></h3>
+                  <h3 class="card-subtitle count mb-2 recovered-number"></h3>
                   <div
                     class="text-muted font-weight-bold total recovered-total"
                   ></div>
@@ -120,7 +120,7 @@
                 <div class="tab-selection"></div>
                 <div class="card-body">
                   <h6 class="card-title"><i class="fas fa-bed"></i> Deaths</h6>
-                  <h3 class="card-subtitle mb-2 deaths-number"></h3>
+                  <h3 class="card-subtitle count mb-2 deaths-number"></h3>
                   <div
                     class="text-muted font-weight-bold total deaths-total"
                   ></div>
@@ -142,9 +142,7 @@
           </div>
         </div> -->
         </div>
-        <div
-          class="col-12 col-lg-4 side-panel-container my-3 d-flex flex-column"
-        >
+        <div class="col-12 col-lg-4 side-panel-container my-3 d-flex flex-column">
           <div class="cases-table-container">
             <h4>Live Cases by Country</h4>
             <div class="country-data">
@@ -159,20 +157,38 @@
               <canvas id="myChart"></canvas>
             </div>
           </div>
+
         </div>
       </div>
       <div class="row main-info">
-        <div class="col-12 col-lg-8 news-container">
-          <h4>News Updates</h4>
-          <div id="news-container" class="row card-group mt-2 mb-2 newsfeed-container">
+        <div class="col-12 col-lg-8 mt-3 news-container">
+          <h4 class="text-center">News Updates</h4>
+          <p class="text-center">Source: The Guardian</p>
+          <div id="news-container" class="row card-group mt-2 mb-2 newsfeed-container"></div>
+          <!-- <div class="d-flex justify-content-center" ><a href="#" target="_blank" class="btn btn-primary">More News Updates</a></div>   -->
+        </div>
 
-          </div>
+        <div class="col-12 col-lg-4 my-3 card healthsafety-container">
+          <h4 class="text-center" >Health & Safety</h4>
+          <p class="text-center">Source: World Health Organization</p>
+          <div id="health-info-container" class="health-info-container">
+
+            <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public"  target="_blank" ><img
+              class=" card-img-top"
+              src="images/StaySafe.png"
+              alt="Stay Safe"
+              
+            /></a>
+        </div>
     </div>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=<YOUR-API-KEY>&callback=initMap"
+      src="https://maps.googleapis.com/maps/api/js?key=<YOUR-API-KEY>>&callback=initMap"
       async
       defer
     ></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha512-d8F1J2kyiRowBB/8/pAWsqUl0wSEOkG5KATkVV4slfblq9VRQ6MyDZVxWl2tWd+mPhuCbpTB4M7uU/x9FlgQ9Q==" crossorigin="anonymous"></script> -->
+
     <!-- <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -190,5 +206,12 @@
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/dropdown.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/transition.min.js"></script>
+    <!-- <script>
+      $('.count').counterUp({
+          delay: 10,
+          time: 1000
+      });
+      
+      </script> -->
   </body>
 </html>

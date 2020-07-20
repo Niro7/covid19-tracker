@@ -1,6 +1,7 @@
 window.onload = () => {
   getCountriesData();
   getHistoricalData();
+  getCountriesHistorical();
   getWorldCoronaData();
   getCoronaNews();
 };
@@ -86,7 +87,7 @@ const setSearchList = (data) => {
 };
 const getCoronaNews = () => {
   fetch(
-    "https://content.guardianapis.com/search?show-elements=image&show-fields=thumbnail%2CtrailText%2Cheadline&page=1&page-size=10&q=coronavirus%2Ccovid-19&api-key=<api-key>"
+    "https://content.guardianapis.com/search?show-fields=all&page=1&page-size=60&q=coronavirus%2Ccovid19&api-key=1aaec247-7620-4a4c-8699-7cd6777a7705"
   )
     .then((response) => response.json())
     .then((data) => {
@@ -145,7 +146,15 @@ const setStatsData = (data) => {
   ).innerHTML = `${totalRecovered} Total`;
   document.querySelector(".deaths-total").innerHTML = `${totalDeaths} Total`;
 };
-
+const getCountriesHistorical = () => {
+  fetch("https://disease.sh/v3/covid-19/historical?lastdays=120")
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      // console.log(data);
+    });
+};
 const getHistoricalData = () => {
   fetch("https://corona.lmao.ninja/v2/historical/all?lastdays=120")
     .then((response) => {
